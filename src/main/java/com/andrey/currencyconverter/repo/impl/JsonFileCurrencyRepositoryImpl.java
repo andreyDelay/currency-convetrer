@@ -18,9 +18,9 @@ public class JsonFileRepositoryImpl implements JsonFileRepository {
 
 
     @Override
-    public CurrencyRate getRateByCurrencyCode(String currencyCode) {
+    public CurrencyRate getByName(String currencyCode) {
         CurrencyType currencyType = CurrencyType.valueOf(currencyCode);
-        Optional<CurrencyRate> first = getRates().stream()
+        Optional<CurrencyRate> first = getAll().stream()
                 .filter(currencyRate -> currencyRate.getCode().equals(currencyType))
                 .findFirst();
 
@@ -31,7 +31,7 @@ public class JsonFileRepositoryImpl implements JsonFileRepository {
     }
 
     @Override
-    public List<CurrencyRate> getRates() {
+    public List<CurrencyRate> getAll() {
         File file = new File(pathToRepositoryFile);
         Gson gson = new Gson();
         JsonReader jsonReader = null;

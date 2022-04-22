@@ -5,18 +5,18 @@ import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.model.CurrencyType;
 import com.andrey.currencyconverter.model.TokenMoney;
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
-import com.andrey.currencyconverter.repo.JsonFileRepository;
+import com.andrey.currencyconverter.repo.JsonFileCurrencyRepository;
 
 public class ConsoleControllerImpl implements Controller {
 
-    private final JsonFileRepository repository;
-    public ConsoleControllerImpl(JsonFileRepository repository) {
+    private final JsonFileCurrencyRepository repository;
+    public ConsoleControllerImpl(JsonFileCurrencyRepository repository) {
         this.repository = repository;
     }
     @Override
     public CurrencyDto convertCurrency(TokenMoney tokenMoney) {
         CurrencyType targetType = tokenMoney.getTargetCurrencyType();
-        CurrencyRate rate = repository.getRateByCurrencyCode(targetType.toString());
+        CurrencyRate rate = repository.getByCurrencyCode(targetType.toString());
         double convertedBalance = convertBalance(tokenMoney.getInitialQuantity(), rate.getRate());
 
         return CurrencyDto.builder()
