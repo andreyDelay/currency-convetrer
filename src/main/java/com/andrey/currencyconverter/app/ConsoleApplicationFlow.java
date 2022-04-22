@@ -1,24 +1,29 @@
 package com.andrey.currencyconverter.app;
 
-import com.andrey.currencyconverter.controllers.Controller;
 import com.andrey.currencyconverter.exceptions.CurrencyCodeNotFoundException;
 import com.andrey.currencyconverter.exceptions.InputCurrencyBalanceException;
 import com.andrey.currencyconverter.model.CurrencyType;
 import com.andrey.currencyconverter.model.TokenMoney;
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
-import com.andrey.currencyconverter.utils.Utils;
+import com.andrey.currencyconverter.validators.Validator;
 import com.andrey.currencyconverter.view.UserInterface;
 
 public class ConsoleApplicationFlow implements ApplicationFlow {
 
-        private void stopIfExitWasInput(String inputValue) {
+    private final UserInterface userInterface;
+
+    public ConsoleApplicationFlow(UserInterface userInterface) {
+        this.userInterface = userInterface;
+    }
+
+    private void stopIfExitWasInput(String inputValue) {
         if (inputValue.equalsIgnoreCase("exit")) {
             System.exit(0);
         }
     }
 
     @Override
-    public void startFlow(UserInterface userInterface, Controller controller) {
+    public void startFlow() {
         userInterface.showGreeting();
         String amountOfRubles;
         String targetCurrencyCode;
@@ -30,7 +35,7 @@ public class ConsoleApplicationFlow implements ApplicationFlow {
             stopIfExitWasInput(targetCurrencyCode);
 
             try {
-                Utils.validateParameters(amountOfRubles, targetCurrencyCode);
+                Validator.validateParameters(amountOfRubles, targetCurrencyCode);
                 TokenMoney tokenMoney = TokenMoney.builder()
                         .currencyType(CurrencyType.RUB)
                         .initialQuantity(Double.parseDouble(amountOfRubles))
@@ -38,8 +43,8 @@ public class ConsoleApplicationFlow implements ApplicationFlow {
                         .build();
 
                 CurrencyDto targetCurrencyInfo =
-                        controller.convertCurrency(tokenMoney);
-                System.out.println(targetCurrencyInfo);
+                        userInterface.convert(tokenMoney);
+                userInterface.printOperationResult(targetCurrencyInfo);
             } catch (CurrencyCodeNotFoundException e) {
                 userInterface.showErrorMessage(String.format("Currency with code - %s not found", targetCurrencyCode));
             } catch (InputCurrencyBalanceException e) {
