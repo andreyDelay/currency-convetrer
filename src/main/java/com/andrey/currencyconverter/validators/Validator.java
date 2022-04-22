@@ -1,10 +1,10 @@
-package com.andrey.currencyconverter.utils;
+package com.andrey.currencyconverter.validators;
 
 import com.andrey.currencyconverter.exceptions.CurrencyCodeNotFoundException;
 import com.andrey.currencyconverter.exceptions.InputCurrencyBalanceException;
 import com.andrey.currencyconverter.model.CurrencyType;
 
-public class Utils {
+public class Validator {
 
     public static void validateParameters(String amountOfRubles, String targetCurrencyCode)
                                                             throws InputCurrencyBalanceException,
@@ -18,9 +18,9 @@ public class Utils {
         try {
             result = Double.parseDouble(amountOfCurrency);
             if (result <= 0) {
-                throw new Exception();
+                throw new IllegalArgumentException();
             }
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             throw new InputCurrencyBalanceException(e.getMessage());
         }
     }
