@@ -14,8 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class JsonFileCurrencyRepositoryImpl implements JsonFileCurrencyRepository {
-    private final String pathToRepositoryFile = "src/main/resources/currency.json";
+    private final String pathToRepositoryFile;
 
+    public JsonFileCurrencyRepositoryImpl(String pathToRepositoryFile) {
+        this.pathToRepositoryFile = pathToRepositoryFile;
+    }
 
     @Override
     public CurrencyRate getByCurrencyCode(String currencyCode) {
@@ -34,7 +37,7 @@ public class JsonFileCurrencyRepositoryImpl implements JsonFileCurrencyRepositor
     public List<CurrencyRate> getAll() {
         File file = new File(pathToRepositoryFile);
         Gson gson = new Gson();
-        JsonReader jsonReader = null;
+        JsonReader jsonReader;
         try {
             jsonReader = new JsonReader(new FileReader(file));
         } catch (FileNotFoundException e) {
