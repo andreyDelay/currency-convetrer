@@ -11,9 +11,11 @@ import com.andrey.currencyconverter.view.UserInterface;
 public class ConsoleApplicationFlow implements ApplicationFlow {
 
     private final UserInterface userInterface;
+    private final Validator validator;
 
-    public ConsoleApplicationFlow(UserInterface userInterface) {
+    public ConsoleApplicationFlow(UserInterface userInterface, Validator validator) {
         this.userInterface = userInterface;
+        this.validator = validator;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class ConsoleApplicationFlow implements ApplicationFlow {
             try {
                 amountOfRubles = userInterface.requestAmountOfRubles();
                 targetCurrencyCode = userInterface.requestTargetCurrencyType();
-                Validator.validateParameters(amountOfRubles, targetCurrencyCode);
+                validator.validateParameters(amountOfRubles, targetCurrencyCode);
 
                 TokenMoney tokenMoney = TokenMoney.builder()
                         .currencyType(CurrencyType.RUB)
