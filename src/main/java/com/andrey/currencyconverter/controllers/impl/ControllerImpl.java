@@ -5,13 +5,13 @@ import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.model.CurrencyType;
 import com.andrey.currencyconverter.model.TokenMoney;
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
-import com.andrey.currencyconverter.repo.JsonFileCurrencyRepository;
+import com.andrey.currencyconverter.repo.CurrencyRepository;
 
 public class ControllerImpl implements Controller {
 
-    private final JsonFileCurrencyRepository repository;
+    private final CurrencyRepository<CurrencyRate> repository;
 
-    public ControllerImpl(JsonFileCurrencyRepository repository) {
+    public ControllerImpl(CurrencyRepository repository) {
         this.repository = repository;
     }
 

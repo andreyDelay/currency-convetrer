@@ -2,7 +2,7 @@ package com.andrey.currencyconverter.repo.impl;
 
 import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.model.CurrencyType;
-import com.andrey.currencyconverter.repo.JsonFileCurrencyRepository;
+import com.andrey.currencyconverter.repo.CurrencyRepository;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class JsonFileCurrencyRepositoryImpl implements JsonFileCurrencyRepository {
+public class JsonFileCurrencyRepositoryImpl implements CurrencyRepository<CurrencyRate> {
     private final String pathToRepositoryFile;
 
     public JsonFileCurrencyRepositoryImpl(String pathToRepositoryFile) {
