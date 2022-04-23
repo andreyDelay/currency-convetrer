@@ -7,12 +7,14 @@ import com.andrey.currencyconverter.model.TokenMoney;
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
 import com.andrey.currencyconverter.repo.JsonFileCurrencyRepository;
 
-public class ConsoleControllerImpl implements Controller {
+public class ControllerImpl implements Controller {
 
     private final JsonFileCurrencyRepository repository;
-    public ConsoleControllerImpl(JsonFileCurrencyRepository repository) {
+
+    public ControllerImpl(JsonFileCurrencyRepository repository) {
         this.repository = repository;
     }
+
     @Override
     public CurrencyDto convertCurrency(TokenMoney tokenMoney) {
         CurrencyType targetType = tokenMoney.getTargetCurrencyType();

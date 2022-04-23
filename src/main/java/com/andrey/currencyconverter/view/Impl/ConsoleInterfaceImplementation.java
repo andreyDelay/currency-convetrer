@@ -1,5 +1,7 @@
 package com.andrey.currencyconverter.view.Impl;
 
+import com.andrey.currencyconverter.controllers.Controller;
+import com.andrey.currencyconverter.model.TokenMoney;
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
 import com.andrey.currencyconverter.view.UserInterface;
 
@@ -8,6 +10,11 @@ import java.util.Scanner;
 public class ConsoleInterfaceImplementation implements UserInterface {
 
     private final Scanner scanner = new Scanner(System.in);
+    private final Controller controller;
+
+    public ConsoleInterfaceImplementation(Controller controller) {
+        this.controller = controller;
+    }
 
     @Override
     public void showGreeting() {
@@ -20,12 +27,16 @@ public class ConsoleInterfaceImplementation implements UserInterface {
     @Override
     public String requestAmountOfRubles() {
         System.out.println("Please, input amount of rubles!");
-        return scanner.nextLine();
+        String consoleInputValue = scanner.nextLine();
+        stopIfInputValueEqualsExit(consoleInputValue);
+        return consoleInputValue;
     }
     @Override
     public String requestTargetCurrencyType() {
         System.out.println("Please, input target currency type!");
-        return scanner.nextLine();
+        String consoleInputValue = scanner.nextLine();
+        stopIfInputValueEqualsExit(consoleInputValue);
+        return consoleInputValue;
     }
 
     @Override
@@ -36,10 +47,21 @@ public class ConsoleInterfaceImplementation implements UserInterface {
     }
 
     @Override
+    public CurrencyDto convert(TokenMoney tokenMoney) {
+        return controller.convertCurrency(tokenMoney);
+    }
+
+    @Override
     public void printOperationResult(CurrencyDto result) {
         System.out.println(result.toString());
         System.out.println("*********************************\n");
         System.out.println("To stop the program - type 'exit'.\n");
+    }
+
+    private void stopIfInputValueEqualsExit(String consoleInputData) {
+        if (consoleInputData.equalsIgnoreCase("exit")) {
+            System.exit(0);
+        }
     }
 
 }

@@ -16,26 +16,18 @@ public class ConsoleApplicationFlow implements ApplicationFlow {
         this.userInterface = userInterface;
     }
 
-    private void stopIfExitWasInput(String inputValue) {
-        if (inputValue.equalsIgnoreCase("exit")) {
-            System.exit(0);
-        }
-    }
-
     @Override
     public void startFlow() {
         userInterface.showGreeting();
-        String amountOfRubles;
-        String targetCurrencyCode;
+        String amountOfRubles = "";
+        String targetCurrencyCode = "";
 
         do {
-            amountOfRubles = userInterface.requestAmountOfRubles();
-            stopIfExitWasInput(amountOfRubles);
-            targetCurrencyCode = userInterface.requestTargetCurrencyType();
-            stopIfExitWasInput(targetCurrencyCode);
-
             try {
+                amountOfRubles = userInterface.requestAmountOfRubles();
+                targetCurrencyCode = userInterface.requestTargetCurrencyType();
                 Validator.validateParameters(amountOfRubles, targetCurrencyCode);
+
                 TokenMoney tokenMoney = TokenMoney.builder()
                         .currencyType(CurrencyType.RUB)
                         .initialQuantity(Double.parseDouble(amountOfRubles))
@@ -44,6 +36,7 @@ public class ConsoleApplicationFlow implements ApplicationFlow {
 
                 CurrencyDto targetCurrencyInfo =
                         userInterface.convert(tokenMoney);
+
                 userInterface.printOperationResult(targetCurrencyInfo);
             } catch (CurrencyCodeNotFoundException e) {
                 userInterface.showErrorMessage(String.format("Currency with code - %s not found", targetCurrencyCode));
