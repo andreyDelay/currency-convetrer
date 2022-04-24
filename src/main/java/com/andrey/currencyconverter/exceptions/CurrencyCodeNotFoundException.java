@@ -1,6 +1,6 @@
 package com.andrey.currencyconverter.exceptions;
 
-public class CurrencyCodeNotFoundException extends Throwable {
+public class CurrencyCodeNotFoundException extends Exception {
     private String message;
 
     public CurrencyCodeNotFoundException(String message) {

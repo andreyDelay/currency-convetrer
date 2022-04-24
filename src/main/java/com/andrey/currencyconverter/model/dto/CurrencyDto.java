@@ -2,8 +2,10 @@ package com.andrey.currencyconverter.model.dto;
 
 import com.andrey.currencyconverter.model.CurrencyType;
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
+@Getter
 public class CurrencyDto {
     private Double initialAmountOfRubles;
     private CurrencyType targetCurrency;

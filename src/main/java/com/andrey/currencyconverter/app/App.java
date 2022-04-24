@@ -17,7 +17,7 @@ public class App
             String pathToJsonFileRepository = ApplicationUtils.getPathToJsonFileRepo();
 
             CurrencyRepository repository = new JsonFileCurrencyRepositoryImpl(pathToJsonFileRepository);
-            Controller controller = new ControllerImpl(repository, new Validator());
+            Controller controller = new ControllerImpl(repository);
             UserInterface userInterface = new ConsoleInterfaceImplementation(controller);
             ApplicationFlow applicationFlow = new ConsoleApplicationFlow(userInterface, new Validator());
             applicationFlow.startFlow();

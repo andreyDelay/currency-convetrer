@@ -1,6 +1,6 @@
 package com.andrey.currencyconverter.exceptions;
 
-public class RepositoryPathNotFoundException extends Throwable {
+public class RepositoryPathNotFoundException extends Exception {
 
     private String message;
 

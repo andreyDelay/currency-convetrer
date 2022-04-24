@@ -1,6 +1,6 @@
 package com.andrey.currencyconverter.exceptions;
 
-public class InputCurrencyBalanceException extends Throwable {
+public class InputCurrencyBalanceException extends Exception {
 
     private String message;
 

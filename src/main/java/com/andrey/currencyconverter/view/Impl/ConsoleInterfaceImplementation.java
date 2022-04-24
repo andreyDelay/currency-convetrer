@@ -47,12 +47,22 @@ public class ConsoleInterfaceImplementation implements UserInterface {
 
     @Override
     public CurrencyDto convert(String rublesQty, String targetCurrencyCode) {
-        return controller.convertCurrency(rublesQty, targetCurrencyCode);
+        CurrencyDto currencyDto = null;
+        try {
+            currencyDto =  controller.convertCurrency(rublesQty, targetCurrencyCode);
+        } catch (IllegalArgumentException e) {
+            showErrorMessage(e.getMessage());
+        }
+        return currencyDto;
     }
 
     @Override
     public void printOperationResult(CurrencyDto result) {
-        System.out.println(result.toString());
+        if (result == null) {
+            System.out.println("For target currency no any info for now.");
+        } else {
+            System.out.println(result);
+        }
         System.out.println("*********************************\n");
         System.out.println("To stop the program - type 'exit'.\n");
     }

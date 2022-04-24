@@ -20,8 +20,9 @@ public class Validator {
             if (result <= 0) {
                 throw new IllegalArgumentException();
             }
-        } catch (IllegalArgumentException e) {
-            throw new InputCurrencyBalanceException(e.getMessage());
+        } catch (Exception e) {
+            throw new InputCurrencyBalanceException(
+                    String.format("Wrong incoming currency balance value - %s",amountOfCurrency));
         }
     }
 
@@ -29,7 +30,8 @@ public class Validator {
         try {
             CurrencyType.valueOf(targetCurrencyCode);
         } catch (IllegalArgumentException e) {
-            throw new CurrencyCodeNotFoundException(e.getMessage());
+            throw new CurrencyCodeNotFoundException(
+                    String.format("Currency with code - %s not found", targetCurrencyCode));
         }
     }
 }
