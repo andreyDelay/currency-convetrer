@@ -1,7 +1,6 @@
 package com.andrey.currencyconverter.view.Impl;
 
 import com.andrey.currencyconverter.controllers.Controller;
-import com.andrey.currencyconverter.model.TokenMoney;
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
 import com.andrey.currencyconverter.view.UserInterface;
 
@@ -47,8 +46,8 @@ public class ConsoleInterfaceImplementation implements UserInterface {
     }
 
     @Override
-    public CurrencyDto convert(TokenMoney tokenMoney) {
-        return controller.convertCurrency(tokenMoney);
+    public CurrencyDto convert(String rublesQty, String targetCurrencyCode) {
+        return controller.convertCurrency(rublesQty, targetCurrencyCode);
     }
 
     @Override

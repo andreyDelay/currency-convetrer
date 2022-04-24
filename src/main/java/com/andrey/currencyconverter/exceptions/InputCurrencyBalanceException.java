@@ -1,7 +1,6 @@
 package com.andrey.currencyconverter.exceptions;
 
 public class InputCurrencyBalanceException extends Throwable {
-   /* INCORRECT_AMOUNT("The amount of currency should be a positive number.");*/
 
     private String message;
 

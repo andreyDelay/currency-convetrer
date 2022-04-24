@@ -6,10 +6,10 @@ import com.andrey.currencyconverter.model.CurrencyType;
 
 public class Validator {
 
-    public void validateParameters(String amountOfRubles, String targetCurrencyCode)
+    public void validateParameters(String rublesQty, String targetCurrencyCode)
                                                             throws InputCurrencyBalanceException,
                                                             CurrencyCodeNotFoundException {
-        validateAmountOfCurrency(amountOfRubles);
+        validateAmountOfCurrency(rublesQty);
         validateCurrencyCode(targetCurrencyCode);
     }
 
@@ -28,7 +28,7 @@ public class Validator {
     private void validateCurrencyCode(String targetCurrencyCode) throws CurrencyCodeNotFoundException {
         try {
             CurrencyType.valueOf(targetCurrencyCode);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             throw new CurrencyCodeNotFoundException(e.getMessage());
         }
     }
