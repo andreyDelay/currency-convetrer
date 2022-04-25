@@ -7,12 +7,11 @@ import com.andrey.currencyconverter.service.CurrencyConvertingService;
 public class CurrencyConvertingServiceImpl implements CurrencyConvertingService {
 
     @Override
-    public CurrencyDto convertCurrency(String rublesQty, CurrencyRate targetCurrencyInfo) {
-        double rubles = Double.parseDouble(rublesQty);
-        double convertedTargetCurrency = convertBalance(rubles, targetCurrencyInfo.getRate());
+    public CurrencyDto convertCurrency(double rublesQty, CurrencyRate targetCurrencyInfo) {
+        double convertedTargetCurrency = convertBalance(rublesQty, targetCurrencyInfo.getRate());
 
         return CurrencyDto.builder()
-                .initialAmountOfRubles(rubles)
+                .initialAmountOfRubles(rublesQty)
                 .targetCurrency(targetCurrencyInfo.getCode())
                 .targetCurrencyRate(targetCurrencyInfo.getRate() * 100)
                 .amountOfTargetCurrency(convertedTargetCurrency)

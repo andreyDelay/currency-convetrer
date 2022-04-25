@@ -37,12 +37,13 @@ public class ConsoleApplicationFlow implements ApplicationFlow {
             targetCurrencyCode = userInterface.requestTargetCurrencyType();
             try {
                 validator.validateParameters(rublesQty, targetCurrencyCode);
+                double rubles = Double.parseDouble(rublesQty);
 
                 CurrencyRate targetCurrencyRateInfo =
-                        (CurrencyRate)currencyRepository.getByCurrencyCode(targetCurrencyCode);
+                        (CurrencyRate) currencyRepository.getByCurrencyCode(targetCurrencyCode);
 
                 CurrencyDto convertedCurrencyData =
-                        currencyService.convertCurrency(rublesQty, targetCurrencyRateInfo);
+                        currencyService.convertCurrency(rubles, targetCurrencyRateInfo);
                 if (convertedCurrencyData != null) {
                     userInterface.printOperationResult(convertedCurrencyData);
                 } else {

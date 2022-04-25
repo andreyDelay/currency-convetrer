@@ -5,5 +5,5 @@ import com.andrey.currencyconverter.model.dto.CurrencyDto;
 
 public interface CurrencyConvertingService {
 
-    CurrencyDto convertCurrency(String rublesQty, CurrencyRate targetCurrencyInfo);
+    CurrencyDto convertCurrency(double rublesQty, CurrencyRate targetCurrencyInfo);
 }
