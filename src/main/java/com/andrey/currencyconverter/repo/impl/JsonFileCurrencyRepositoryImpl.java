@@ -4,11 +4,13 @@ import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.model.CurrencyType;
 import com.andrey.currencyconverter.repo.CurrencyRepository;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +45,6 @@ public class JsonFileCurrencyRepositoryImpl implements CurrencyRepository<Curren
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return Arrays.asList(gson.fromJson(jsonReader, CurrencyRate[].class));
+        return gson.fromJson(jsonReader, new TypeToken<List<CurrencyRate>>(){}.getType());
     }
 }
