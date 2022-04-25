@@ -9,6 +9,8 @@ import com.andrey.currencyconverter.service.CurrencyConvertingService;
 import com.andrey.currencyconverter.validators.Validator;
 import com.andrey.currencyconverter.view.UserInterface;
 
+import java.util.NoSuchElementException;
+
 public class ConsoleApplicationFlow implements ApplicationFlow {
 
     private final UserInterface userInterface;
@@ -49,9 +51,9 @@ public class ConsoleApplicationFlow implements ApplicationFlow {
                 } else {
                     userInterface.showErrorMessage("Required information ot found!");
                 }
-            } catch (CurrencyCodeNotFoundException e) {
-                userInterface.showErrorMessage(e.getMessage());
-            } catch (InputCurrencyBalanceException e) {
+            } catch (CurrencyCodeNotFoundException |
+                    InputCurrencyBalanceException |
+                    NoSuchElementException e) {
                 userInterface.showErrorMessage(e.getMessage());
             }
         } while (!(rublesQty.equalsIgnoreCase("exit") ||

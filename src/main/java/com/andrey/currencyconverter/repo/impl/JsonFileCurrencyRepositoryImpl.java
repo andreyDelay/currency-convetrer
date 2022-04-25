@@ -1,5 +1,6 @@
 package com.andrey.currencyconverter.repo.impl;
 
+import com.andrey.currencyconverter.exceptions.CurrencyCodeNotFoundException;
 import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.model.CurrencyType;
 import com.andrey.currencyconverter.repo.CurrencyRepository;
@@ -10,9 +11,8 @@ import com.google.gson.stream.JsonReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class JsonFileCurrencyRepositoryImpl implements CurrencyRepository<CurrencyRate> {
@@ -30,7 +30,7 @@ public class JsonFileCurrencyRepositoryImpl implements CurrencyRepository<Curren
                 .findFirst();
 
         if (first.isEmpty()) {
-            return null;
+            throw new NoSuchElementException(String.format("Rate for currency %s not found", currencyCode));
         }
         return first.get();
     }
