@@ -2,17 +2,27 @@ package com.andrey.currencyconverter.app;
 
 import com.andrey.currencyconverter.exceptions.CurrencyCodeNotFoundException;
 import com.andrey.currencyconverter.exceptions.InputCurrencyBalanceException;
+import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
+import com.andrey.currencyconverter.repo.CurrencyRepository;
+import com.andrey.currencyconverter.service.CurrencyConvertingService;
 import com.andrey.currencyconverter.validators.Validator;
 import com.andrey.currencyconverter.view.UserInterface;
 
 public class ConsoleApplicationFlow implements ApplicationFlow {
 
     private final UserInterface userInterface;
+    private final CurrencyConvertingService currencyService;
+    private final CurrencyRepository currencyRepository;
     private final Validator validator;
 
-    public ConsoleApplicationFlow(UserInterface userInterface, Validator validator) {
+    public ConsoleApplicationFlow(UserInterface userInterface,
+                                  CurrencyConvertingService currencyService,
+                                  CurrencyRepository currencyRepository,
+                                  Validator validator) {
         this.userInterface = userInterface;
+        this.currencyService = currencyService;
+        this.currencyRepository = currencyRepository;
         this.validator = validator;
     }
 
@@ -27,15 +37,21 @@ public class ConsoleApplicationFlow implements ApplicationFlow {
             targetCurrencyCode = userInterface.requestTargetCurrencyType();
             try {
                 validator.validateParameters(rublesQty, targetCurrencyCode);
+
+                CurrencyRate targetCurrencyRateInfo =
+                        (CurrencyRate)currencyRepository.getByCurrencyCode(targetCurrencyCode);
+
+                CurrencyDto convertedCurrencyData =
+                        currencyService.convertCurrency(rublesQty, targetCurrencyRateInfo);
+                if (convertedCurrencyData != null) {
+                    userInterface.printOperationResult(convertedCurrencyData);
+                } else {
+                    userInterface.showErrorMessage("Required information ot found!");
+                }
             } catch (CurrencyCodeNotFoundException e) {
                 userInterface.showErrorMessage(e.getMessage());
             } catch (InputCurrencyBalanceException e) {
                 userInterface.showErrorMessage(e.getMessage());
-            }
-
-            CurrencyDto targetCurrencyData = userInterface.convert(rublesQty, targetCurrencyCode);
-            if (targetCurrencyData != null) {
-                userInterface.printOperationResult(targetCurrencyData);
             }
         } while (!(rublesQty.equalsIgnoreCase("exit") ||
                 targetCurrencyCode.equalsIgnoreCase("exit")));

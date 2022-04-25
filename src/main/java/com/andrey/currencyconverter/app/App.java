@@ -1,7 +1,7 @@
 package com.andrey.currencyconverter.app;
 
-import com.andrey.currencyconverter.controllers.Controller;
-import com.andrey.currencyconverter.controllers.impl.ControllerImpl;
+import com.andrey.currencyconverter.service.CurrencyConvertingService;
+import com.andrey.currencyconverter.service.impl.CurrencyConvertingServiceImpl;
 import com.andrey.currencyconverter.exceptions.RepositoryPathNotFoundException;
 import com.andrey.currencyconverter.repo.CurrencyRepository;
 import com.andrey.currencyconverter.repo.impl.JsonFileCurrencyRepositoryImpl;
@@ -17,9 +17,12 @@ public class App
             String pathToJsonFileRepository = ApplicationUtils.getPathToJsonFileRepo();
 
             CurrencyRepository repository = new JsonFileCurrencyRepositoryImpl(pathToJsonFileRepository);
-            Controller controller = new ControllerImpl(repository);
-            UserInterface userInterface = new ConsoleInterfaceImplementation(controller);
-            ApplicationFlow applicationFlow = new ConsoleApplicationFlow(userInterface, new Validator());
+            CurrencyConvertingService currencyService = new CurrencyConvertingServiceImpl();
+            UserInterface userInterface = new ConsoleInterfaceImplementation();
+            Validator validator = new Validator();
+
+            ApplicationFlow applicationFlow =
+                    new ConsoleApplicationFlow(userInterface, currencyService, repository, validator);
             applicationFlow.startFlow();
         } catch (RepositoryPathNotFoundException e) {
             e.printStackTrace();

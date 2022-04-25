@@ -1,22 +1,14 @@
-package com.andrey.currencyconverter.controllers.impl;
+package com.andrey.currencyconverter.service.impl;
 
-import com.andrey.currencyconverter.controllers.Controller;
 import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
-import com.andrey.currencyconverter.repo.CurrencyRepository;
+import com.andrey.currencyconverter.service.CurrencyConvertingService;
 
-public class ControllerImpl implements Controller {
-
-    private final CurrencyRepository<CurrencyRate> repository;
-
-    public ControllerImpl(CurrencyRepository repository) {
-        this.repository = repository;
-    }
+public class CurrencyConvertingServiceImpl implements CurrencyConvertingService {
 
     @Override
-    public CurrencyDto convertCurrency(String rublesQty, String targetCurrencyCode) {
+    public CurrencyDto convertCurrency(String rublesQty, CurrencyRate targetCurrencyInfo) {
         double rubles = Double.parseDouble(rublesQty);
-        CurrencyRate targetCurrencyInfo = repository.getByCurrencyCode(targetCurrencyCode);
         double convertedTargetCurrency = convertBalance(rubles, targetCurrencyInfo.getRate());
 
         return CurrencyDto.builder()

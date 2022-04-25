@@ -1,6 +1,5 @@
 package com.andrey.currencyconverter.view.Impl;
 
-import com.andrey.currencyconverter.controllers.Controller;
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
 import com.andrey.currencyconverter.view.UserInterface;
 
@@ -9,11 +8,6 @@ import java.util.Scanner;
 public class ConsoleInterfaceImplementation implements UserInterface {
 
     private final Scanner scanner = new Scanner(System.in);
-    private final Controller controller;
-
-    public ConsoleInterfaceImplementation(Controller controller) {
-        this.controller = controller;
-    }
 
     @Override
     public void showGreeting() {
@@ -43,17 +37,6 @@ public class ConsoleInterfaceImplementation implements UserInterface {
         System.out.println(error);
         System.out.println();
         System.out.println("Please, try again\n");
-    }
-
-    @Override
-    public CurrencyDto convert(String rublesQty, String targetCurrencyCode) {
-        CurrencyDto currencyDto = null;
-        try {
-            currencyDto =  controller.convertCurrency(rublesQty, targetCurrencyCode);
-        } catch (IllegalArgumentException e) {
-            showErrorMessage(e.getMessage());
-        }
-        return currencyDto;
     }
 
     @Override
