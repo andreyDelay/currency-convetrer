@@ -12,9 +12,9 @@ public class CurrencyConvertingServiceImpl implements CurrencyConvertingService 
 
         return CurrencyDto.builder()
                 .initialAmountOfRubles(rublesQty)
-                .targetCurrency(targetCurrencyInfo.getCode())
+                .targetCurrencyCode(targetCurrencyInfo.getCode())
                 .targetCurrencyRate(targetCurrencyInfo.getRate() * 100)
-                .amountOfTargetCurrency(convertedTargetCurrency)
+                .convertedTargetCurrency(convertedTargetCurrency)
                 .build();
     }
 

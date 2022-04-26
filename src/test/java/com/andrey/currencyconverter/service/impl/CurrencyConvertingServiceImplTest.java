@@ -28,6 +28,6 @@ class CurrencyConvertingServiceImplTest {
         //when
         CurrencyDto currencyDto = underTest.convertCurrency(rubles, currencyRate);
         //then
-        assertEquals(currencyDto.getAmountOfTargetCurrency(), amountOfTargetCurrency);
+        assertEquals(currencyDto.getConvertedTargetCurrency(), amountOfTargetCurrency);
     }
 }
