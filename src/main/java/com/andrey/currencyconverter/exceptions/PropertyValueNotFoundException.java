@@ -1,10 +1,10 @@
 package com.andrey.currencyconverter.exceptions;
 
-public class RepositoryPathNotFoundException extends Exception {
+public class PropertyValueNotFoundException extends Exception {
 
     private String message;
 
-    public RepositoryPathNotFoundException(String message) {
+    public PropertyValueNotFoundException(String message) {
         this.message = message;
     }
 
