@@ -1,6 +1,5 @@
 package com.andrey.currencyconverter.repo.impl;
 
-import com.andrey.currencyconverter.exceptions.CurrencyCodeNotFoundException;
 import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.model.CurrencyType;
 import com.andrey.currencyconverter.repo.CurrencyRepository;
