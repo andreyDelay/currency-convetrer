@@ -8,6 +8,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CurrencyRate {
-    private CurrencyType code;
+    private String code;
     private double rate;
 }
