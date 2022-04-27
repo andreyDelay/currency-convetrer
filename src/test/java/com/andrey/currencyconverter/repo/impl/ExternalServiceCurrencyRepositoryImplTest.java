@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 class ExternalServiceCurrencyRepositoryImplTest {
 
     @Mock
-    private ExternalServiceCurrencyRepositoryImpl underTest;
+    private ExternalServiceCurrencyRepositoryImpl mockRepository;
     private AutoCloseable autoCloseable;
 
     @BeforeEach
@@ -39,10 +39,10 @@ class ExternalServiceCurrencyRepositoryImplTest {
         currencyRate.setCharCode("GBP");
 
         //when
-        Mockito.when(underTest.getByCurrencyCode(anyString()))
+        Mockito.when(mockRepository.getByCurrencyCode(anyString()))
                 .thenReturn(currencyRate);
         //then
-        CurrencyRate expected = underTest.getByCurrencyCode(anyString());
+        CurrencyRate expected = mockRepository.getByCurrencyCode(anyString());
         assertThat(expected.getValue(), is(equalTo(expectedRate)));
         assertThat(expected.getValue(), is(greaterThan(zero)));
     }
@@ -53,8 +53,8 @@ class ExternalServiceCurrencyRepositoryImplTest {
         UnsupportedOperationException exception =
                 new UnsupportedOperationException();
         //when
-        Mockito.when(underTest.getAll()).thenThrow(exception);
+        Mockito.when(mockRepository.getAll()).thenThrow(exception);
         //then
-        assertThrows(UnsupportedOperationException.class, () -> underTest.getAll());
+        assertThrows(UnsupportedOperationException.class, () -> mockRepository.getAll());
     }
 }

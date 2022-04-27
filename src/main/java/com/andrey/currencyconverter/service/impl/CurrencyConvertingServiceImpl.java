@@ -1,12 +1,13 @@
 package com.andrey.currencyconverter.service.impl;
 
+import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
 import com.andrey.currencyconverter.service.CurrencyConvertingService;
 
 public class CurrencyConvertingServiceImpl implements CurrencyConvertingService {
 
     @Override
-    public CurrencyDto convertCurrency(double rublesQty, com.andrey.currencyconverter.model.CurrencyRate targetCurrencyInfo) {
+    public CurrencyDto convertCurrency(double rublesQty, CurrencyRate targetCurrencyInfo) {
         double convertedTargetCurrency = convertBalance(rublesQty, targetCurrencyInfo.getValue());
 
         return CurrencyDto.builder()
