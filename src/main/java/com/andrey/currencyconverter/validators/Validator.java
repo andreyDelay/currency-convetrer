@@ -2,7 +2,6 @@ package com.andrey.currencyconverter.validators;
 
 import com.andrey.currencyconverter.exceptions.CurrencyCodeNotFoundException;
 import com.andrey.currencyconverter.exceptions.InputCurrencyBalanceException;
-import com.andrey.currencyconverter.model.CurrencyType;
 
 public class Validator {
 
@@ -28,10 +27,18 @@ public class Validator {
 
     private void validateCurrencyCode(String targetCurrencyCode) throws CurrencyCodeNotFoundException {
         try {
-            CurrencyType.valueOf(targetCurrencyCode);
+            int initLength = targetCurrencyCode.length();
+            int lengthAfterReplacement = targetCurrencyCode
+                    .replaceAll("[^A-Za-z]", "")
+                    .length();
+            if (targetCurrencyCode.length() == 0 ||
+                initLength != lengthAfterReplacement ||
+                targetCurrencyCode.length() != 3) {
+                throw new IllegalArgumentException();
+            }
         } catch (IllegalArgumentException e) {
             throw new CurrencyCodeNotFoundException(
-                    String.format("Currency with code - %s not found", targetCurrencyCode));
+                    String.format("Wrong currency code - %s", targetCurrencyCode));
         }
     }
 }

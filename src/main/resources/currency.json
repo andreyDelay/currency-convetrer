@@ -1,22 +1,22 @@
 [
 	{
-		"code": "EUR",
-		"rate": 0.92012162798022
+		"charCode": "EUR",
+		"value": 0.92012162798022
 	},
 	{
-		"code": "GBP",
-		"rate": 0.76671730591219
+		"charCode": "GBP",
+		"value": 0.76671730591219
 	},
 	{
-		"code": "USD",
-		"rate": 0.76671730591219
+		"charCode": "USD",
+		"value": 0.76671730591219
 	},
 	{
-		"code": "JPY",
-		"rate": 0.76671730591219
+		"charCode": "JPY",
+		"value": 0.76671730591219
 	},
 	{
-		"code": "RUB",
-		"rate": 0.01
+		"charCode": "RUB",
+		"value": 0.01
 	}
 ]

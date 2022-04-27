@@ -70,14 +70,14 @@ class ValidatorTest {
     @Test
     void shouldThrowCurrencyCodeNotFoundExceptionIfWrongCurrencyCode() {
         //given
-        String zeroRublesValue = "150.5";
+        String rublesValue = "150.5";
         String currencyCode = "QWERTY";
         //when
         Exception exception = assertThrows(CurrencyCodeNotFoundException.class,
-                () -> underTest.validateParameters(zeroRublesValue,currencyCode));
+                () -> underTest.validateParameters(rublesValue, currencyCode));
         //then
         assertEquals(
-                String.format("Currency with code - %s not found", currencyCode),
+                String.format("Wrong currency code - %s", currencyCode),
                 exception.getMessage());
     }
 }

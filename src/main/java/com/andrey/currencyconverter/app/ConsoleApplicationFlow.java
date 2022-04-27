@@ -41,8 +41,8 @@ public class ConsoleApplicationFlow implements ApplicationFlow {
                 validator.validateParameters(rublesQty, targetCurrencyCode);
                 double rubles = Double.parseDouble(rublesQty);
 
-                CurrencyRate targetCurrencyRateInfo =
-                        (CurrencyRate) currencyRepository.getByCurrencyCode(targetCurrencyCode);
+                CurrencyRate targetCurrencyRateInfo = (CurrencyRate)
+                        currencyRepository.getByCurrencyCode(targetCurrencyCode);
 
                 CurrencyDto convertedCurrencyData =
                         currencyService.convertCurrency(rubles, targetCurrencyRateInfo);

@@ -1,7 +1,6 @@
 package com.andrey.currencyconverter.repo.impl;
 
 import com.andrey.currencyconverter.model.CurrencyRate;
-import com.andrey.currencyconverter.model.CurrencyType;
 import com.andrey.currencyconverter.repo.CurrencyRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -18,8 +17,8 @@ class JsonFileCurrencyRepositoryImplTest {
 
     private CurrencyRate getRate() {
         CurrencyRate currencyRate = new CurrencyRate();
-        currencyRate.setRate(1L);
-        currencyRate.setCode(CurrencyType.GBP);
+        currencyRate.setValue(1L);
+        currencyRate.setCharCode("GBP");
         return currencyRate;
     }
 
@@ -34,7 +33,7 @@ class JsonFileCurrencyRepositoryImplTest {
                         .getByCurrencyCode(currencyCode))
                 .thenReturn(rate);
         //then
-        assertEquals(mockRepository.getByCurrencyCode(currencyCode).getCode(),CurrencyType.GBP);
+        assertEquals(mockRepository.getByCurrencyCode(currencyCode).getCharCode(),"GBP");
     }
 
     @Test
@@ -47,7 +46,7 @@ class JsonFileCurrencyRepositoryImplTest {
                 .thenThrow(NoSuchElementException.class);
         //then
         assertThrows(NoSuchElementException.class,
-                () -> mockRepository.getByCurrencyCode("WRONG_CODE").getCode());
+                () -> mockRepository.getByCurrencyCode("WRONG_CODE").getCharCode());
     }
 
     @Test
