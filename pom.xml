@@ -19,6 +19,7 @@
     <lombock-vesion>1.18.24</lombock-vesion>
     <mockito-core-version>4.5.1</mockito-core-version>
     <okhttp-version>4.9.3</okhttp-version>
+    <mave-surefire-plugin-version>2.22.2</mave-surefire-plugin-version>
   </properties>
 
   <dependencies>
@@ -27,6 +28,11 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit-version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>1.3</version>
     </dependency>
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
@@ -60,7 +66,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.2</version> <!--standard version didn't run tests -->
+          <version>${mave-surefire-plugin-version}</version> <!--standard version didn't run tests -->
         </plugin>
       </plugins>
     </pluginManagement>

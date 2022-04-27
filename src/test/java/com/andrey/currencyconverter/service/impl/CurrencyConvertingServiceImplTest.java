@@ -22,7 +22,7 @@ class CurrencyConvertingServiceImplTest {
         //given
         double rubles = 150L;
         com.andrey.currencyconverter.model.CurrencyRate currencyRate = getRate();
-        double amountOfTargetCurrency = rubles / (currencyRate.getValue() * 100);
+        double amountOfTargetCurrency = rubles / (currencyRate.getValue());
         //when
         CurrencyDto currencyDto = underTest.convertCurrency(rubles, currencyRate);
         //then

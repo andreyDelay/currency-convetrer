@@ -35,6 +35,6 @@ public class ExternalServiceCurrencyRepositoryImpl implements CurrencyRepository
 
     @Override
     public List<CurrencyRate> getAll() {
-        return null;
+        throw new UnsupportedOperationException("The operation not supported by the class.");
     }
 }
