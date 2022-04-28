@@ -3,7 +3,9 @@ package com.andrey.currencyconverter.service.impl;
 import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
 import com.andrey.currencyconverter.service.CurrencyConvertingService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CurrencyConvertingServiceImpl implements CurrencyConvertingService {
 
     @Override

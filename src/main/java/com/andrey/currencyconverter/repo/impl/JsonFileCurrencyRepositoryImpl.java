@@ -5,6 +5,7 @@ import com.andrey.currencyconverter.repo.CurrencyRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,6 +15,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Repository
 public class JsonFileCurrencyRepositoryImpl implements CurrencyRepository<CurrencyRate> {
     private final String pathToRepositoryFile;
 

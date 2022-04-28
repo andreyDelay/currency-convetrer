@@ -1,30 +1,22 @@
 package com.andrey.currencyconverter.app;
 
-import com.andrey.currencyconverter.exceptions.ClassInitializingException;
-import com.andrey.currencyconverter.exceptions.PropertyValueNotFoundException;
+import com.andrey.currencyconverter.config.RepositoryInitializationConfig;
 import com.andrey.currencyconverter.repo.CurrencyRepository;
 import com.andrey.currencyconverter.service.CurrencyConvertingService;
-import com.andrey.currencyconverter.service.impl.CurrencyConvertingServiceImpl;
-import com.andrey.currencyconverter.utils.ApplicationUtils;
 import com.andrey.currencyconverter.validators.Validator;
-import com.andrey.currencyconverter.view.Impl.ConsoleInterfaceImplementation;
 import com.andrey.currencyconverter.view.UserInterface;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
+@ComponentScan
 public class App
 {
     public static void main( String[] args ) {
-        try {
-
-            CurrencyRepository repository = ApplicationUtils.getRepositoryImplementation();
-            CurrencyConvertingService currencyService = new CurrencyConvertingServiceImpl();
-            UserInterface userInterface = new ConsoleInterfaceImplementation();
-            Validator validator = new Validator();
-
-            ApplicationFlow applicationFlow =
-                    new ConsoleApplicationFlow(userInterface, currencyService, repository, validator);
-            applicationFlow.startFlow();
-        } catch (PropertyValueNotFoundException | ClassInitializingException e) {
-            e.printStackTrace();
-        }
+        ApplicationContext context = new AnnotationConfigApplicationContext(RepositoryInitializationConfig.class);
+        ApplicationFlow applicationFlow = context.getBean(ApplicationFlow.class);
+        applicationFlow.startFlow();
     }
 }

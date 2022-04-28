@@ -2,7 +2,9 @@ package com.andrey.currencyconverter.validators;
 
 import com.andrey.currencyconverter.exceptions.CurrencyCodeNotFoundException;
 import com.andrey.currencyconverter.exceptions.InputCurrencyBalanceException;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Validator {
 
     public void validateParameters(String rublesQty, String targetCurrencyCode)

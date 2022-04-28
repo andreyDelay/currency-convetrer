@@ -2,9 +2,11 @@ package com.andrey.currencyconverter.view.Impl;
 
 import com.andrey.currencyconverter.model.dto.CurrencyDto;
 import com.andrey.currencyconverter.view.UserInterface;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class ConsoleInterfaceImplementation implements UserInterface {
 
     private final Scanner scanner = new Scanner(System.in);

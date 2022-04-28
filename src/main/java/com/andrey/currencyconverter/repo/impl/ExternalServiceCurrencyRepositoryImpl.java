@@ -4,11 +4,13 @@ import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.repo.CurrencyRepository;
 import com.google.gson.Gson;
 import okhttp3.*;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+@Repository
 public class ExternalServiceCurrencyRepositoryImpl implements CurrencyRepository<CurrencyRate> {
 
     private final String pathToRepository;

@@ -8,9 +8,12 @@ import com.andrey.currencyconverter.repo.CurrencyRepository;
 import com.andrey.currencyconverter.service.CurrencyConvertingService;
 import com.andrey.currencyconverter.validators.Validator;
 import com.andrey.currencyconverter.view.UserInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
 
+@Component
 public class ConsoleApplicationFlow implements ApplicationFlow {
 
     private final UserInterface userInterface;
@@ -18,6 +21,7 @@ public class ConsoleApplicationFlow implements ApplicationFlow {
     private final CurrencyRepository currencyRepository;
     private final Validator validator;
 
+    @Autowired
     public ConsoleApplicationFlow(UserInterface userInterface,
                                   CurrencyConvertingService currencyService,
                                   CurrencyRepository currencyRepository,
