@@ -20,11 +20,17 @@ public class ConsoleInterfaceImplementation implements UserInterface {
     }
 
     @Override
-    public String requestAmountOfRubles() {
+    public double requestAmountOfRubles() {
         System.out.println("Please, input amount of rubles!");
-        String consoleInputValue = scanner.nextLine();
-        stopIfInputValueEqualsExit(consoleInputValue);
-        return consoleInputValue;
+        String rublesInputValue = scanner.nextLine();
+        stopIfInputValueEqualsExit(rublesInputValue);
+        double result;
+        try {
+            result = Double.parseDouble(rublesInputValue);
+        } catch (NumberFormatException e) {
+            result = -1;
+        }
+        return result;
     }
     @Override
     public String requestTargetCurrencyType() {

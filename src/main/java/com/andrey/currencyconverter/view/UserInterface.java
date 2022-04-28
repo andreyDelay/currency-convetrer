@@ -5,7 +5,7 @@ import com.andrey.currencyconverter.model.dto.CurrencyDto;
 public interface UserInterface {
 
     void showGreeting();
-    String requestAmountOfRubles();
+    double requestAmountOfRubles();
     String requestTargetCurrencyType();
     void showErrorMessage(String message);
 /*    CurrencyDto convert(String rublesQty, String targetCurrencyCode);*/

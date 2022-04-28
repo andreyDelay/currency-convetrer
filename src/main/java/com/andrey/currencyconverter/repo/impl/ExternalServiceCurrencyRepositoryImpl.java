@@ -1,20 +1,21 @@
 package com.andrey.currencyconverter.repo.impl;
 
-import com.andrey.currencyconverter.config.condition.ExternalServiceRepositoryInitializationCondition;
 import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.repo.CurrencyRepository;
 import com.google.gson.Gson;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Repository;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-@Repository
-@Conditional(ExternalServiceRepositoryInitializationCondition.class)
+@Validated
+@Repository(value = "ExternalRepository")
 public class ExternalServiceCurrencyRepositoryImpl implements CurrencyRepository<CurrencyRate> {
 
     @Value("${repository-path}")
@@ -26,7 +27,7 @@ public class ExternalServiceCurrencyRepositoryImpl implements CurrencyRepository
     }
 
     @Override
-    public CurrencyRate getByCurrencyCode(String currencyCode) {
+    public CurrencyRate getByCurrencyCode(@Valid @Pattern(regexp = "[A-Z]{3}") String currencyCode) {
         Request request = new Request.Builder()
                 .url(pathToRepository + currencyCode)
                 .build();
