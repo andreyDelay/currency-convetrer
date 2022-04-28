@@ -13,6 +13,7 @@ public class ExternalServiceRepositoryInitializationCondition implements Conditi
         Class<ExternalServiceCurrencyRepositoryImpl> externalServiceCurrencyRepositoryClass =
                 ExternalServiceCurrencyRepositoryImpl.class;
         String canonicalName = externalServiceCurrencyRepositoryClass.getCanonicalName();
-        return propertyClassValue.equals(canonicalName);
+        boolean equals = propertyClassValue.equals(canonicalName);
+        return equals;
     }
 }

@@ -13,6 +13,7 @@ public class JsonRepositoryInitializationCondition implements Condition {
         Class<JsonFileCurrencyRepositoryImpl> jsonFileCurrencyRepositoryClass =
                 JsonFileCurrencyRepositoryImpl.class;
         String canonicalName = jsonFileCurrencyRepositoryClass.getCanonicalName();
-        return propertyClassValue.equals(canonicalName);
+        boolean equals = propertyClassValue.equals(canonicalName);
+        return equals;
     }
 }

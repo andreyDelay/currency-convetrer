@@ -2,11 +2,9 @@ package com.andrey.currencyconverter.model.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.stereotype.Component;
 
 @Builder
 @Getter
-@Component
 public class CurrencyDto {
     private double initialAmountOfRubles;
     private String targetCurrencyCode;

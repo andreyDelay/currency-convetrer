@@ -1,10 +1,13 @@
 package com.andrey.currencyconverter.repo.impl;
 
+import com.andrey.currencyconverter.config.condition.JsonRepositoryInitializationCondition;
 import com.andrey.currencyconverter.model.CurrencyRate;
 import com.andrey.currencyconverter.repo.CurrencyRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
@@ -16,12 +19,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
+@Conditional(JsonRepositoryInitializationCondition.class)
 public class JsonFileCurrencyRepositoryImpl implements CurrencyRepository<CurrencyRate> {
-    private final String pathToRepositoryFile;
 
-    public JsonFileCurrencyRepositoryImpl(String pathToRepository) {
-        this.pathToRepositoryFile = pathToRepository;
-    }
+    @Value("${repository-path}")
+    private String pathToRepositoryFile;
 
     @Override
     public CurrencyRate getByCurrencyCode(String currencyCode) {

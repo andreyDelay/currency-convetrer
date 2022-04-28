@@ -1,21 +1,18 @@
 package com.andrey.currencyconverter.app;
 
-import com.andrey.currencyconverter.config.RepositoryInitializationConfig;
-import com.andrey.currencyconverter.repo.CurrencyRepository;
-import com.andrey.currencyconverter.service.CurrencyConvertingService;
-import com.andrey.currencyconverter.validators.Validator;
-import com.andrey.currencyconverter.view.UserInterface;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@ComponentScan
+@PropertySource("application.properties")
+@ComponentScan("com.andrey.currencyconverter")
 public class App
 {
     public static void main( String[] args ) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(RepositoryInitializationConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(App.class);
         ApplicationFlow applicationFlow = context.getBean(ApplicationFlow.class);
         applicationFlow.startFlow();
     }
