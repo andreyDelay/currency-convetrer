@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -27,7 +25,7 @@ public class JsonFileCurrencyRepositoryImpl implements CurrencyRepository<Curren
     private String pathToRepositoryFile;
 
     @Override
-    public CurrencyRate getByCurrencyCode(@Valid @Pattern(regexp = "[A-Z]{3}") String currencyCode) {
+    public CurrencyRate getByCurrencyCode(String currencyCode) {
         Optional<CurrencyRate> first = getAll().stream()
                 .filter(currencyRate -> currencyRate.getCharCode().equalsIgnoreCase(currencyCode))
                 .findFirst();

@@ -7,20 +7,21 @@ import com.andrey.currencyconverter.service.CurrencyConvertingService;
 import com.andrey.currencyconverter.view.UserInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class ConsoleApplicationFlow implements ApplicationFlow {
 
     private final UserInterface userInterface;
     private final CurrencyConvertingService currencyService;
-    @Qualifier(value = "JsonFileRepository") //ExternalRepository
+    @Qualifier(value = "JsonFileRepository")
     private final CurrencyRepository currencyRepository;
 
     private double rublesQty;
+
     private String targetCurrencyCode;
 
     @Override

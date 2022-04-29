@@ -1,5 +1,6 @@
 package com.andrey.currencyconverter.app;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("application.properties")
 @ComponentScan("com.andrey.currencyconverter")
+@SpringBootApplication
 public class App
 {
     public static void main( String[] args ) {

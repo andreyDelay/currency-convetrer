@@ -28,7 +28,7 @@ public class ConsoleInterfaceImplementation implements UserInterface {
         try {
             result = Double.parseDouble(rublesInputValue);
         } catch (NumberFormatException e) {
-            result = -1;
+            result = Double.NaN;
         }
         return result;
     }

@@ -8,6 +8,5 @@ public interface UserInterface {
     double requestAmountOfRubles();
     String requestTargetCurrencyType();
     void showErrorMessage(String message);
-/*    CurrencyDto convert(String rublesQty, String targetCurrencyCode);*/
     void printOperationResult(CurrencyDto result);
 }

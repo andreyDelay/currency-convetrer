@@ -5,13 +5,16 @@ import org.springframework.stereotype.Component;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-
 @Component
 public class RublesInputValueValidator implements ConstraintValidator<ValidRublesInputValue, Double> {
 
     @Override
-    public boolean isValid(Double rublesInputValue, ConstraintValidatorContext constraintValidatorContext) {
-        boolean isValid = !rublesInputValue.isNaN() && rublesInputValue > 0;
-        return isValid;
+    public void initialize(ValidRublesInputValue constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
+
+    @Override
+    public boolean isValid(Double aDouble, ConstraintValidatorContext constraintValidatorContext) {
+        return false;
     }
 }
