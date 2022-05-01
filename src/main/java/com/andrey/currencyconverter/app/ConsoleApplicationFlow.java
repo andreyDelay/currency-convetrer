@@ -52,7 +52,7 @@ public class ConsoleApplicationFlow implements ApplicationFlow {
                         currencyRepository.getByCurrencyCode(targetCurrencyCode);
 
                 CurrencyDto convertedCurrencyData =
-                        currencyService.convertCurrency(rublesQty, targetCurrencyRateInfo);
+                        currencyService.convertCurrency(tokenMoneyDto, targetCurrencyRateInfo);
 
                 if (convertedCurrencyData != null) {
                     userInterface.printOperationResult(convertedCurrencyData);

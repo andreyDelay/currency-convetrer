@@ -35,7 +35,7 @@ class ExternalServiceCurrencyRepositoryImplTest {
         double zero = 0.0;
         double expectedRate = 72.7089;
         CurrencyRate currencyRate = new CurrencyRate();
-        currencyRate.setValue(expectedRate);
+        currencyRate.setRate(expectedRate);
         currencyRate.setCharCode("GBP");
 
         //when
@@ -43,8 +43,8 @@ class ExternalServiceCurrencyRepositoryImplTest {
                 .thenReturn(currencyRate);
         //then
         CurrencyRate expected = mockRepository.getByCurrencyCode(anyString());
-        assertThat(expected.getValue(), is(equalTo(expectedRate)));
-        assertThat(expected.getValue(), is(greaterThan(zero)));
+        assertThat(expected.getRate(), is(equalTo(expectedRate)));
+        assertThat(expected.getRate(), is(greaterThan(zero)));
     }
 
     @Test

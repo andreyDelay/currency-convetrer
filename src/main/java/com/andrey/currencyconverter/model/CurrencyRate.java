@@ -10,5 +10,5 @@ import lombok.ToString;
 @ToString
 public class CurrencyRate {
     private String charCode;
-    private double value;
+    private double rate;
 }

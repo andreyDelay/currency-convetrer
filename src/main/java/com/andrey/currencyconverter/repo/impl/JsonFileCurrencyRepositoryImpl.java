@@ -49,7 +49,7 @@ public class JsonFileCurrencyRepositoryImpl implements CurrencyRepository<Curren
         List<CurrencyRate> currencyRates =
                 gson.fromJson(jsonReader, new TypeToken<List<CurrencyRate>>() {}.getType());
         return currencyRates.stream()
-                .peek(currencyRate -> currencyRate.setValue(currencyRate.getValue() * 100L))
+                .peek(currencyRate -> currencyRate.setRate(currencyRate.getRate() * 100L))
                 .collect(Collectors.toList());
     }
 }

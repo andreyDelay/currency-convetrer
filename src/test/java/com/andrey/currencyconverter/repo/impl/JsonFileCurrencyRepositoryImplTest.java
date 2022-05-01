@@ -17,7 +17,7 @@ class JsonFileCurrencyRepositoryImplTest {
 
     private CurrencyRate getRate() {
         CurrencyRate currencyRate = new CurrencyRate();
-        currencyRate.setValue(1L);
+        currencyRate.setRate(1L);
         currencyRate.setCharCode("GBP");
         return currencyRate;
     }
