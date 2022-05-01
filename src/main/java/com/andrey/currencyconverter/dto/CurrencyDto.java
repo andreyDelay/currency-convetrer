@@ -1,4 +1,4 @@
-package com.andrey.currencyconverter.model.dto;
+package com.andrey.currencyconverter.dto;
 
 import lombok.Builder;
 import lombok.Getter;

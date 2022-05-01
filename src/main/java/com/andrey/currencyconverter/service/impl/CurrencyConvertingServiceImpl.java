@@ -1,7 +1,7 @@
 package com.andrey.currencyconverter.service.impl;
 
 import com.andrey.currencyconverter.model.CurrencyRate;
-import com.andrey.currencyconverter.model.dto.CurrencyDto;
+import com.andrey.currencyconverter.dto.CurrencyDto;
 import com.andrey.currencyconverter.service.CurrencyConvertingService;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

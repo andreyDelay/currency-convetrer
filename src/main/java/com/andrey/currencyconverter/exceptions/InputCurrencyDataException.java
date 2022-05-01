@@ -1,9 +1,9 @@
 package com.andrey.currencyconverter.exceptions;
 
-public class CurrencyCodeNotFoundException extends Exception {
+public class InputCurrencyDataException extends RuntimeException {
     private String message;
 
-    public CurrencyCodeNotFoundException(String message) {
+    public InputCurrencyDataException(String message) {
         this.message = message;
     }
 

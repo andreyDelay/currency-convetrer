@@ -1,6 +1,7 @@
 package com.andrey.currencyconverter.view.Impl;
 
-import com.andrey.currencyconverter.model.dto.CurrencyDto;
+import com.andrey.currencyconverter.dto.CurrencyDto;
+import com.andrey.currencyconverter.exceptions.InputCurrencyDataException;
 import com.andrey.currencyconverter.view.UserInterface;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +29,7 @@ public class ConsoleInterfaceImplementation implements UserInterface {
         try {
             result = Double.parseDouble(rublesInputValue);
         } catch (NumberFormatException e) {
-            result = Double.NaN;
+            throw new InputCurrencyDataException(String.format("Wrong rubles value - %s.", rublesInputValue));
         }
         return result;
     }

@@ -5,12 +5,13 @@ import com.andrey.currencyconverter.repo.CurrencyRepository;
 import com.google.gson.Gson;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-/*@Repository(value = "ExternalRepository")*/
+@Repository(value = "ExternalRepository")
 public class ExternalServiceCurrencyRepositoryImpl implements CurrencyRepository<CurrencyRate> {
 
     @Value("${repository-path}")

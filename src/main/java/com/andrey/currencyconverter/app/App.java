@@ -1,16 +1,15 @@
 package com.andrey.currencyconverter.app;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
+
 
 @Configuration
 @PropertySource("application.properties")
 @ComponentScan("com.andrey.currencyconverter")
-@SpringBootApplication
 public class App
 {
     public static void main( String[] args ) {
@@ -18,4 +17,11 @@ public class App
         ApplicationFlow applicationFlow = context.getBean(ApplicationFlow.class);
         applicationFlow.startFlow();
     }
+
+    @Bean
+    public Validator validator() {
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        return validatorFactory.getValidator();
+    }
+
 }

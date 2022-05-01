@@ -1,6 +1,6 @@
 package com.andrey.currencyconverter.view;
 
-import com.andrey.currencyconverter.model.dto.CurrencyDto;
+import com.andrey.currencyconverter.dto.CurrencyDto;
 
 public interface UserInterface {
 
